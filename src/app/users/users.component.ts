@@ -56,6 +56,7 @@ export class UsersComponent implements OnInit {
       age,
       sallary,
     });
+    this.form.reset();
   }
 
   public getMinAge(): number {
