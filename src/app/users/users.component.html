@@ -1,16 +1,34 @@
-<div>
+<form [formGroup]="form">
   <h2>New user</h2>
   <div>
     <label for="name">name:</label>
-    <input />
+    <input id="name" formControlName="name" />
   </div>
   <div>
-    <label for="address">age:</label>
-    <input />
+    <label for="age">age:</label>
+    <input id="age" type="number" formControlName="age" />
   </div>
   <div>
-    <button>Add</button>
+    <label for="sallary">sallary:</label>
+    <input id="sallary" type="number" formControlName="sallary" />
   </div>
+  <div>
+    <button (click)="handleAddUser()">Add</button>
+  </div>
+</form>
 
-  <h2>List of users</h2>
-</div>
+<h2>List of users</h2>
+<ul
+  class="user-items"
+  *ngFor="let user of users"
+  [class.min-age]="user.age === getMinAge()"
+>
+  <app-user
+    [name]="user.name"
+    [age]="user.age"
+    [sallary]="user.sallary"
+  ></app-user>
+</ul>
+
+<h2>Average sallary</h2>
+<span>{{ users | average : "sallary" }}</span>
